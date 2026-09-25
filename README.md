@@ -9,16 +9,16 @@ să persiste pe disc, legând logica din cod de un sistem real de fișiere.
 Ce face aplicația:
 Este un sistem interactiv de gestiune a stocurilor:
 
--Încărcare Automată:La pornire, aplicația își încarcă stocul dintr-un fișier local (`stoc.txt`)
--Gestionare (Create & Search):Permite adăugarea de produse noi și interogarea stocului existent
--Logică de Vânzare (Update):Aplică metode specifice pentru a vinde produse, incluzând validări
+- Încărcare Automată:La pornire, aplicația își încarcă stocul dintr-un fișier local (`stoc.txt`).
+- Gestionare (Create & Search):Permite adăugarea de produse noi și interogarea stocului existent.
+- Logică de Vânzare (Update):Aplică metode specifice pentru a vinde produse, incluzând validări.
  (ex: protecție împotriva stocului negativ)
--Persistența Datelor (Save):La închidere, starea finală a inventarului este exportată automat pe hard disk 
+- Persistența Datelor (Save):La închidere, starea finală a inventarului este exportată automat pe hard disk.
 
 Ce concepte am pus în practică:
 
--Limbaj:Java
--POO:Clase, Obiecte, Constructori, Metode, Moștenire (`extends`).
--Structuri de Date:Gestionarea memoriei prin liste dinamice (`ArrayList`).
--Manipularea fișierelor și a textelor (`File`, `Scanner`, `FileWriter`, `.split()`).
+- Limbaj:Java
+- POO:Clase, Obiecte, Constructori, Metode, Moștenire (`extends`).
+- Structuri de Date:Gestionarea memoriei prin liste dinamice (`ArrayList`).
+- Manipularea fișierelor și a textelor (`File`, `Scanner`, `FileWriter`, `.split()`).
 - Gestionarea proiectului prin Git & GitHub.

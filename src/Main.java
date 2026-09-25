@@ -34,8 +34,10 @@ public class Main {
             System.out.println("\n=== MENIU SMART INVENTORY ===");
             System.out.println("1. Vezi tot stocul");
             System.out.println("2. Cauta un produs");
-            System.out.println("3. Iesire");
-            System.out.print("Alege o optiune (tasteaza 1, 2 sau 3): ");
+            System.out.println("3. Adauga produs nou");
+            System.out.println("4. Vinde un produs");
+            System.out.println("5. Iesire");
+            System.out.print("Alege o optiune (1-5): ");
 
             String optiune = scanner.nextLine(); // Citim ce a ales utilizatorul
 
@@ -60,8 +62,43 @@ public class Main {
                 if (!gasit) {
                     System.out.println("-> Ne pare rau, produsul nu este pe stoc.");
                 }
+            }else if (optiune.equals("3")) {
+                System.out.println("\n--- ADAUGARE PRODUS NOU ---");
 
-            } else if (optiune.equals("3")) {
+                System.out.print("Introdu numele produsului: ");
+                String numeNou = scanner.nextLine();
+
+                System.out.print("Introdu pretul (ex: 12.5): ");
+                String pretText = scanner.nextLine();
+                double pretNou = Double.parseDouble(pretText);
+
+                System.out.print("Introdu cantitatea in stoc: ");
+                String cantitateText = scanner.nextLine();
+                int stocNou = Integer.parseInt(cantitateText);
+                depozit.add(new Produs(numeNou, pretNou, stocNou));
+                System.out.println("-> " + numeNou + " a fost adaugat cu succes in depozit!\n");
+
+            } else if (optiune.equals("4")) {
+                System.out.print("\nCe produs vrei sa vinzi?: ");
+                String produsDeVandut = scanner.nextLine();
+                boolean gasit = false;
+
+                for (Produs p : depozit) {
+                    if (p.nume.equalsIgnoreCase(produsDeVandut)) {
+                        gasit = true;
+                        System.out.print("Cate bucati vrei sa vinzi? (In stoc: " + p.cantitateInStoc + "): ");
+                        String cantitateText = scanner.nextLine();
+                        int bucatiVandute = Integer.parseInt(cantitateText);
+                        p.vinde(bucatiVandute);
+                        break;
+                    }
+                }
+
+                if (!gasit) {
+                    System.out.println("-> Produsul nu a fost gasit in stoc.");
+                }
+
+            } else if (optiune.equals("5")) {
                 System.out.println("\nSalvam stocul in fisier...");
 
                 // Încercăm să scriem în fișier
@@ -88,7 +125,7 @@ public class Main {
                 aplicatiaRuleaza = false; // Oprește aplicația
 
             } else {
-                System.out.println("Eroare: Te rog alege o optiune valida (1, 2 sau 3).");
+                System.out.println("Eroare: Te rog alege o optiune valida (1-5).");
             }
         } // Aici se termină WHILE. Dacă nu ai ales 3, se întoarce automat sus la Meniu!
 

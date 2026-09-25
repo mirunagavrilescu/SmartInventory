@@ -1,13 +1,30 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
 
         ArrayList<Produs> depozit = new ArrayList<>();
-        depozit.add(new Produs("Cafea Boabe", 85.50, 15));
-        depozit.add(new Produs("Apa Plata", 5.5, 30));
-        depozit.add(new ProdusPerisabil("Lapte", 7.5, 20, "25-August-2026"));
+        System.out.println("--- Sistemul SmartInventory ---");
+        System.out.println("Incarcam datele din fisier...");
+        try {
+            File fisier = new File("stoc.txt");
+            Scanner cititorFisier = new Scanner(fisier);
+            while (cititorFisier.hasNextLine()) {
+                String linie = cititorFisier.nextLine();
+                String[] bucati = linie.split(",");
+                String nume = bucati[0];
+                double pret = Double.parseDouble(bucati[1]);
+                int stoc = Integer.parseInt(bucati[2]);
+                depozit.add(new Produs(nume, pret, stoc));
+            }
+            cititorFisier.close();
+            System.out.println("-> Date incarcate! Avem " + depozit.size() + " produse in depozit.\n");
+        } catch (Exception e) {
+            System.out.println("-> Niciun fisier gasit. Pornim cu depozitul gol.\n");
+        }
 
         Scanner scanner = new Scanner(System.in);
         boolean aplicatiaRuleaza = true; // „Întrerupătorul” aplicației
@@ -45,8 +62,30 @@ public class Main {
                 }
 
             } else if (optiune.equals("3")) {
+                System.out.println("\nSalvam stocul in fisier...");
+
+                // Încercăm să scriem în fișier
+                try {
+                    // Creăm (sau suprascriem) un fișier numit "stoc.txt"
+                    FileWriter fisier = new FileWriter("stoc.txt");
+
+                    // Trecem prin toate produsele din depozit
+                    for (Produs p : depozit) {
+                        // Le scriem pe rând, separate prin virgulă.
+                        // "\n" înseamnă trecere la rând nou (Enter).
+                        fisier.write(p.nume + "," + p.pret + "," + p.cantitateInStoc + "\n");
+                    }
+
+                    fisier.close(); // Salvăm și închidem fișierul
+                    System.out.println("-> Datele au fost salvate cu succes in stoc.txt!");
+
+                } catch (Exception e) {
+                    // Dacă ceva merge prost (ex: nu avem permisiuni), prindem eroarea aici
+                    System.out.println("Eroare la salvare: " + e.getMessage());
+                }
+
                 System.out.println("Se inchide sistemul... O zi frumoasa!");
-                aplicatiaRuleaza = false; // Asta va opri bucla while!
+                aplicatiaRuleaza = false; // Oprește aplicația
 
             } else {
                 System.out.println("Eroare: Te rog alege o optiune valida (1, 2 sau 3).");

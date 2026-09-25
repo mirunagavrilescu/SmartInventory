@@ -1,0 +1,3 @@
+Cafea Boabe,85.5,15
+Apa Plata,5.5,30
+Lapte,7.5,20

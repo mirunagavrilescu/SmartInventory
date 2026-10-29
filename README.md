@@ -1,24 +1,27 @@
-# SmartInventory
-Salut! Sunt studentă la Automatică și Calculatoare (UPB), iar acesta este un proiect personal
-construit pe parcursul verii pentru a mă pregăti de materiile din anul 2.
+# SmartInventory: Java OOP & File Management System
 
-Am vrut să trec de la "cod scris doar pentru teme" la o aplicație cap-coadă. Scopul principal a fost să 
-sedimentez conceptele de Programare Orientată pe Obiecte (POO) și să înțeleg practic cum pot face datele 
-să persiste pe disc, legând logica din cod de un sistem real de fișiere.
+SmartInventory is an interactive inventory management system built in Java. Developed as a practical transition from academic algorithms to end-to-end application design, this project focuses on Object-Oriented Programming (OOP) principles and local data persistence.
 
-Ce face aplicația:
-Este un sistem interactiv de gestiune a stocurilor:
+## Tech Stack & Concepts
+* **Language:** Java
+* **Core Concepts:** Object-Oriented Programming (Classes, Inheritance, Encapsulation), Dynamic Data Structures (`ArrayList`), File I/O operations, String manipulation.
 
-- Încărcare Automată:La pornire, aplicația își încarcă stocul dintr-un fișier local (`stoc.txt`).
-- Gestionare (Create & Search):Permite adăugarea de produse noi și interogarea stocului existent.
-- Logică de Vânzare (Update):Aplică metode specifice pentru a vinde produse, incluzând validări.
- (ex: protecție împotriva stocului negativ)
-- Persistența Datelor (Save):La închidere, starea finală a inventarului este exportată automat pe hard disk.
+## Core Features
 
-Ce concepte am pus în practică:
+* **Data Persistence (Load & Save):** 
+  * Automatically parses and loads existing stock from a local text file (`stoc.txt`) upon initialization using `File` and `Scanner`.
+  * Exports and overwrites the final inventory state to the hard drive upon application exit via `FileWriter`, ensuring no data loss between sessions.
+* **Inventory Management (Create & Read):** Allows users to seamlessly add new product entries to the dynamic list and perform search queries to check current stock levels.
+* **Sales Processing (Update):** Implements dedicated sales logic to decrease stock safely. Includes state validation (e.g., negative stock protection) to ensure data integrity during transactions.
 
-- Limbaj:Java
-- POO:Clase, Obiecte, Constructori, Metode, Moștenire (`extends`).
-- Structuri de Date:Gestionarea memoriei prin liste dinamice (`ArrayList`).
-- Manipularea fișierelor și a textelor (`File`, `Scanner`, `FileWriter`, `.split()`).
-- Gestionarea proiectului prin Git & GitHub.
+##  Technical Highlights
+* **OOP Architecture:** Models the real-world inventory using customized classes, constructors, and inheritance (`extends`) to separate logic and maintain clean code.
+* **Dynamic Memory:** Utilizes Java's `ArrayList` for flexible data storage, allowing the inventory system to scale dynamically without the fixed limits of standard arrays.
+* **Data Parsing:** Employs string manipulation techniques (like `.split()`) to deserialize plain text data into complex Java objects.
+
+---
+### Getting Started
+1. Clone the repository: `git clone https://github.com/yourusername/SmartInventory.git`
+2. Ensure you have the Java Development Kit (JDK) installed.
+3. Compile and run the main class.
+4. Make sure `stoc.txt` is in the root directory for the app to load initial data.
